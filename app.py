@@ -28,9 +28,6 @@ sp.Load(spm_path)
 print("SentencePiece model loaded at {}.".format(spm_path))
 
 def process_to_IDs_in_sparse_format(sp, sentences):
-  # An utility method that processes sentences with the sentence piece processor
-  # 'sp' and returns the results in tf.SparseTensor-similar format:
-  # (values, indices, dense_shape)
   ids = [sp.EncodeAsIds(x) for x in sentences]
   max_len = max(len(x) for x in ids)
   dense_shape=(len(ids), max_len)
@@ -58,9 +55,6 @@ with tf.Session() as session:
 
 
 def process_to_IDs_in_sparse_format(sp, sentences):
-  # An utility method that processes sentences with the sentence piece processor
-  # 'sp' and returns the results in tf.SparseTensor-similar format:
-  # (values, indices, dense_shape)
   ids = [sp.EncodeAsIds(x) for x in sentences]
   max_len = max(len(x) for x in ids)
   dense_shape=(len(ids), max_len)
@@ -72,12 +66,7 @@ similarity_matrix = cosine_similarity(message_embeddings)
 
 @app.route('/')
 def main():
-    a = similarity_matrix
-    b = str(a[1])
-    c = b.replace("[","")
-    c = c.replace("]","")
-    c = c.split()
-    return str((float(c[0])+float(c[1]))/2*100)
+    return render_template("index.html")
 
 
 
