@@ -4,7 +4,12 @@ import tensorflow as tf
 
 app = Flask(__name__,template_folder='templates')
 
+module_url = ''
 
 @app.route('/')
 def main():
-    return render_template('static/css/index.css')
+    return render_template('index.html')
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
