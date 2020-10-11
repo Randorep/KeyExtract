@@ -35,23 +35,17 @@ def process_to_IDs_in_sparse_format(sp, sentences):
   indices=[[row,col] for row in range(len(ids)) for col in range(len(ids[row]))]
   return (values, indices, dense_shape)
 
-
-word = "food"
-word2 = "burger"
-messages = [word, word2]
-
-
-values, indices, dense_shape = process_to_IDs_in_sparse_format(sp, messages)
-
-
-
-with tf.Session() as session:
-    session.run([tf.global_variables_initializer(), tf.tables_initializer()])
-    message_embeddings = session.run(
-        encodings,
-        feed_dict={input_placeholder.values: values,
-                    input_placeholder.indices: indices,
-                    input_placeholder.dense_shape: dense_shape})
+def getmessage(word,word2):
+  messages = [word, word2]
+  values, indices, dense_shape = process_to_IDs_in_sparse_format(sp, messages)
+  with tf.Session() as session:
+      session.run([tf.global_variables_initializer(), tf.tables_initializer()])
+      message_embeddings = session.run(
+          encodings,
+          feed_dict={input_placeholder.values: values,
+                      input_placeholder.indices: indices,
+                      input_placeholder.dense_shape: dense_shape})
+  return message_embeddings
 
 
 def process_to_IDs_in_sparse_format(sp, sentences):
@@ -62,10 +56,22 @@ def process_to_IDs_in_sparse_format(sp, sentences):
   indices=[[row,col] for row in range(len(ids)) for col in range(len(ids[row]))]
   return (values, indices, dense_shape)
 
-similarity_matrix = cosine_similarity(message_embeddings)
 
-@app.route('/')
+
+@app.route('/',methods=['GET','POST'])
 def main():
+  arr = []
+  if request.method =='POST':
+    typeform = request.form["tyw"]
+    typeform2 = request.form["t2yw"]
+    percent = request.form['pyw']
+    x = typeform.split("")
+    for i in x:
+      similarity_matrix = cosine_similarity(getmessage(i,typeform2))
+      if similarity_matrix > percent:
+        arr.append(i)
+    return render_template("index.html",arr = arr)
+  else:
     return render_template("index.html")
 
 
