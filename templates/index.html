@@ -6,7 +6,7 @@
     <title>Relevant Search</title>
 </head>
 <body>
-    <form>
+    <form method = "POST" action="{{url_for('calc')}}">
         <textarea id="textyouwant"  name="tyw"></textarea><br>
         <textarea id="text2youwant"  name="t2yw"></textarea><br>
         <input type="number" id="percentageyouwant" min="0" max="100" name="pyw"><br>
