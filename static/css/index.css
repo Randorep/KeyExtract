@@ -2,59 +2,61 @@ html {
     background-color: lightblue;
   }
 
-  body{
+body{
 
-  }
+}
 
-  .box{
-      background: white;
-      padding: 2em;
-      box-shadow: 5px 5px 20px;
-
-
-      width: 1000px;
-      height: 200px;
+.box{
+    background: white;
+    padding: 2em;
+    box-shadow: 5px 5px 20px;
 
 
-      margin: auto;
-      width: 50%;
-      border: 3px white;
-      padding: 10px;
+    width: 1000px;
+    height: 200px;
 
-  }
 
-  h1{
-    color: white; 
+    margin: auto;
+    width: 50%;
+    border: 3px white;
+    padding: 10px;
+
+}
+
+h1{
+  color: white; 
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}
+
+form {
+    color: black; 
     position: fixed;
-    top: 10%;
+    top: 50%;
     left: 50%;
     margin-top: -50px;
     margin-left: -100px;
-  }
-
-    form {
-        color: black; 
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        margin-top: -50px;
-        margin-left: -100px;
-    }
+}
 
 
-    .button {
-        background-color: #f4511e;
-        border: none;
-        color: white;
-        padding: 4px 22px;
-        text-align: center;
-        font-size: 16px;
-        margin: 4px 2px;
-        opacity: 0.6;
-        transition: 0.3s;
-        display: inline-block;
-        text-decoration: none;
-        cursor: pointer;
-      }
+.button {
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    outline: none;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+    background: none;
+}
 
-      .button:hover {opacity: 1}
+.button:hover {opacity: 1}
