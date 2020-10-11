@@ -70,6 +70,8 @@ def calc():
       g = float(c[0])*100
       if g > float(percent):
         arr.append(i.replace(","," "))
+      if arr.len() == 0:
+        return "None were found"
     return render_template("results.html", arr=arr)
 
 
