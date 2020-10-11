@@ -1,4 +1,5 @@
-
+# KeyExtract
+![medium](https://user-images.githubusercontent.com/58238450/95683406-02471400-0bb9-11eb-9bd2-a3f9b7c12a2c.jpg)
 
 # Purpose
 KeyExtract allows users ranging from students to researchers to extract useful information from big texts or essays. By a simple click of a button, the webapp returns a list of words that met your % requirement and also correlated to your word/ sentence of choice.
