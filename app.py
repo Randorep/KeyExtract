@@ -10,8 +10,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 app = Flask(__name__,template_folder='templates')
 
 module = hub.Module("https://tfhub.dev/google/universal-sentence-encoder-lite/2")
-global graph
-graph = tf.get_default_graph() 
 
 input_placeholder = tf.sparse_placeholder(tf.int64, shape=[None, None])
 encodings = module(
@@ -20,12 +18,14 @@ encodings = module(
         indices=input_placeholder.indices,
         dense_shape=input_placeholder.dense_shape))
 
-with tf.Session() as sess:
-  spm_path = sess.run(module(signature="spm_path"))
+sess = tf.Session()
+spm_path = sess.run(module(signature="spm_path"))
 
 sp = spm.SentencePieceProcessor()
 sp.Load(spm_path)
 
+sess.run(tf.global_variables_initializer())
+sess.run(tf.tables_initializer())
 
 def process_to_IDs_in_sparse_format(sp, sentences):
   ids = [sp.EncodeAsIds(x) for x in sentences]
@@ -38,13 +38,12 @@ def process_to_IDs_in_sparse_format(sp, sentences):
 def wordchoice(word,word2):
   messages = [word,word2]
   values, indices, dense_shape = process_to_IDs_in_sparse_format(sp, messages)
-  with tf.Session() as session:
-      session.run([tf.global_variables_initializer(), tf.tables_initializer()])
-      message_embeddings = session.run(
-          encodings,
-          feed_dict={input_placeholder.values: values,
-                      input_placeholder.indices: indices,
-                      input_placeholder.dense_shape: dense_shape})
+  message_embeddings = sess.run(
+      encodings,
+      feed_dict={input_placeholder.values: values,
+                  input_placeholder.indices: indices,
+                  input_placeholder.dense_shape: dense_shape})
+  return message_embeddings
 
 
 
@@ -62,7 +61,7 @@ def calc():
     percent = request.form['pyw']
     x = typeform.split()
     for i in x:
-      similarity_matrix = cosine_similarity(wordchoice("Hello","bye"))
+      similarity_matrix = cosine_similarity(wordchoice(i,typeform2))
       a = similarity_matrix 
       b = str(a[1])
       c = b.replace("[","")
@@ -70,7 +69,7 @@ def calc():
       c = c.split()
       g = float(c[0])*100
       if g > float(percent):
-        arr.append(i)
+        arr.append(i.replace(","," "))
     return render_template("results.html", arr=arr)
 
 

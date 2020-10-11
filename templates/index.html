@@ -1,17 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relevant Search</title>
+    <link href="{{ url_for('static',filename = 'css/index.css') }}" type="text/css" rel="stylesheet"> 
 </head>
+
+<h1>
+    Hackathon 2020
+</h1>
+
+
 <body>
-    <form method = "POST" action="{{url_for('calc')}}">
-        <textarea id="textyouwant"  name="tyw"></textarea><br>
-        <textarea id="text2youwant"  name="t2yw"></textarea><br>
-        <input type="number" id="percentageyouwant" min="0" max="100" name="pyw"><br>
-        <input type="submit" value="Submit">
+
+    <div class="box">
+
+    </div>
+
+
+
+
+
+    <form>
+        <div class="textbox">
+            <textarea id="textyouwant"  name="tyw"></textarea><br>
+        </div>
+        <div class="textbox">
+            <textarea id="text2youwant"  name="t2yw"></textarea><br>
+        </div>
+
+        <div class="num">
+            <input type="number" id="percentageyouwant" min="0" max="100" name="pyw">
+            <br><br>
+        </div>
+
+
+        <div class="button">
+            <a href="#0" class="button" value="submit" type="submit">Button</a>
+        </div>
+
     </form>
-    
+
 </body>
+
 </html>
