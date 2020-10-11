@@ -71,7 +71,3 @@ def calc():
       if g > float(percent):
         arr.append(i.replace(","," "))
     return render_template("results.html", arr=arr)
-
-
-
-app.run(debug=True)
