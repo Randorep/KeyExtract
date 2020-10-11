@@ -1,4 +1,4 @@
-# KeyExtract
+
 
 # Purpose
 KeyExtract allows users ranging from students to researchers to extract useful information from big texts or essays. By a simple click of a button, the webapp returns a list of words that met your % requirement and also correlated to your word/ sentence of choice.
