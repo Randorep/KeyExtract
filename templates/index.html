@@ -5,38 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relevant Search</title>
     <link rel="stylesheet" href="{{ url_for('static',filename = 'css/index.css') }}">
-</head>
-
-
-
+    </head>
 <body>
-
     <div class="box">
         <form method = "POST" action="{{url_for('calc')}}">
             <textarea id="textyouwant"  name="tyw"></textarea><br>
-
             <textarea id="text2youwant"  name="t2yw"></textarea><br>
-
-
-
-    
             <input type="number" id="percentageyouwant" min="0" max="100" name="pyw">
                 <br>
-
-
-                <input type="submit" value="Submit" class = "button">
-    
+                <input type="submit" value="Submit" class = "button"> 
         </form>
-
     </div>
-
-
-
-
-
-
-
-
 </body>
-
 </html>
